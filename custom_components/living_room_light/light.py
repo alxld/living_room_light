@@ -269,7 +269,7 @@ class LivingRoomLight(LightEntity):
         #        self._brightness = kwargs.get(ATTR_BRIGHTNESS, def_br)
         self._is_on = True
         self._mode = "On"
-        data = {ATTR_ENTITY_ID: self._light, "transition": 0.1}
+        data = {ATTR_ENTITY_ID: self._light_all, "transition": 0.1}
 
         if ATTR_HS_COLOR in kwargs:
             rl = False
@@ -353,7 +353,7 @@ class LivingRoomLight(LightEntity):
     async def async_update(self):
         """Query light and determine the state."""
         _LOGGER.error(f"{self._name} LIGHT ASYNC_UPDATE")
-        state = self.hass.states.get(self._light)
+        state = self.hass.states.get(self._light_lamps)
 
         if state == None:
             return
