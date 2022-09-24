@@ -19,7 +19,7 @@ from homeassistant.components.light import (
     ATTR_MAX_MIREDS,
     ATTR_MIN_MIREDS,
     ATTR_TRANSITION,
-    ATTR_WHITE_VALUE,
+    # ATTR_WHITE_VALUE,
     ENTITY_ID_FORMAT,
     PLATFORM_SCHEMA,
     SUPPORT_BRIGHTNESS,
@@ -28,8 +28,10 @@ from homeassistant.components.light import (
     SUPPORT_EFFECT,
     SUPPORT_FLASH,
     SUPPORT_TRANSITION,
-    SUPPORT_WHITE_VALUE,
+    # SUPPORT_WHITE_VALUE,
     LightEntity,
+    ATTR_COLOR_MODE,
+    ATTR_SUPPORTED_COLOR_MODES,
 )
 from homeassistant.const import (
     ATTR_ENTITY_ID,
@@ -126,7 +128,7 @@ class LivingRoomLight(LightEntity):
         self._supported_features |= SUPPORT_COLOR_TEMP
         self._supported_features |= SUPPORT_COLOR
         self._supported_features |= SUPPORT_TRANSITION
-        self._supported_features |= SUPPORT_WHITE_VALUE
+        # self._supported_features |= SUPPORT_WHITE_VALUE
 
         # Record whether a switch was used to turn on this light
         self.switched_on = False
@@ -135,7 +137,7 @@ class LivingRoomLight(LightEntity):
         self.harmony_on = False
 
         # self.hass.states.async_set(f"light.{self._name}", "Initialized")
-        _LOGGER.info(f"f{self._name} Light initialized")
+        _LOGGER.info(f"{self._name} Light initialized")
 
     async def async_added_to_hass(self) -> None:
         """Instantiate RightLight"""
@@ -279,13 +281,19 @@ class LivingRoomLight(LightEntity):
         if ATTR_COLOR_TEMP in kwargs:
             rl = False
             data[ATTR_COLOR_TEMP] = kwargs[ATTR_COLOR_TEMP]
-        if ATTR_WHITE_VALUE in kwargs:
+        if ATTR_COLOR_MODE in kwargs:
             rl = False
-            data[ATTR_WHITE_VALUE] = kwargs[ATTR_WHITE_VALUE]
+            data[ATTR_COLOR_MODE] = kwargs[ATTR_COLOR_MODE]
+        # if ATTR_WHITE_VALUE in kwargs:
+        #    rl = False
+        #    data[ATTR_WHITE_VALUE] = kwargs[ATTR_WHITE_VALUE]
         if ATTR_TRANSITION in kwargs:
             data[ATTR_TRANSITION] = kwargs[ATTR_TRANSITION]
 
         if rl:
+            _LOGGER.info(
+                f"{self._name} turn_on, rightlight, brightness: {self._brightness}"
+            )
             if self._brightness < 192:
                 await self._rightlight_all.disable()
                 await self._rightlight_lamps.turn_on(
