@@ -52,7 +52,7 @@ from . import DOMAIN
 
 _LOGGER = logging.getLogger(__name__)
 
-light_entity_all = "light.living_room_group"
+light_entity_all = "light.living_room_group_new"
 light_entity_lamps = "light.living_room_lamps_group"
 light_entity_ceiling = "light.living_room_ceiling_group"
 harmony_entity = "media_player.sony_bravia_tv"
