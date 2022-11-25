@@ -52,3 +52,7 @@ class LivingRoomLight(NewLight):
         self.switch = "Living Room Switch"
         self.motion_sensors.append("Living Room Motion Sensor")
         self.harmony_entity = "media_player.sony_bravia_tv"
+
+        self.has_brightness_threshold = True
+        self.brightness_threshold = 191
+        self.motion_sensor_brightness = 191
