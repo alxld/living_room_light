@@ -55,4 +55,4 @@ class LivingRoomLight(NewLight):
 
         self.has_brightness_threshold = True
         self.brightness_threshold = 191
-        self.motion_sensor_brightness = 191
+        self.motion_sensor_brightness = 150
