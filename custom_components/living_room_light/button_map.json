@@ -1,0 +1,5 @@
+{
+    "on-hold": [
+        [ [ "RightLight", "light.living_room", "Disable"], [ "RightLight", "light.living_room_lamps_group", "Vivid"] ]
+    ]
+}
