@@ -11,19 +11,6 @@ sys.path.append("custom_components/new_light")
 from new_light import NewLight
 
 
-light_entity_all = "light.living_room_group_new"
-light_entity_lamps = "light.living_room_lamps_group"
-light_entity_ceiling = "light.living_room_ceiling_group"
-harmony_entity = "media_player.sony_bravia_tv"
-switch_action = "zigbee2mqtt/Living Room Switch/action"
-motion_sensor_action = "zigbee2mqtt/Living Room Motion Sensor"
-brightness_step = 43
-motion_sensor_brightness = 191
-has_harmony = True
-has_motion_sensor = True
-has_switch = True
-
-
 async def async_setup_platform(
     hass: HomeAssistant,
     config: ConfigType,
